@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LogoIcon, CheckCircleIcon } from '../components/Icons';
+import { LogoIcon, CheckCircleIcon, EyeIcon, EyeOffIcon } from '../components/Icons';
 import { supabase } from '../supabaseClient';
 
 interface OnboardingScreenProps {
@@ -10,6 +10,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) => {
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(false); // Toggle between Signup and Login
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +49,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) => {
     }
   };
 
-  const WelcomeStep = () => (
+  const renderWelcomeStep = () => (
     <div className="flex flex-col items-center justify-center min-h-screen text-center p-8 bg-light dark:bg-dark-bg">
       <div className="w-full max-w-md">
         <LogoIcon className="w-32 h-32 text-primary-500 mb-8 mx-auto" />
@@ -64,7 +65,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) => {
     </div>
   );
 
-  const FeatureStep = () => (
+  const renderFeatureStep = () => (
     <div className="flex flex-col items-center justify-center min-h-screen text-center p-8 bg-light dark:bg-dark-bg">
       <div className="w-full max-w-md">
         <div className="w-28 h-28 bg-primary-500/10 rounded-full flex items-center justify-center mb-8 mx-auto">
@@ -84,7 +85,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) => {
     </div>
   );
 
-  const AuthStep = () => (
+  const renderAuthStep = () => (
     <div className="flex flex-col justify-center min-h-screen p-8 bg-light dark:bg-dark-bg">
       <div className="w-full max-w-md mx-auto">
         <div className="text-center mb-8">
@@ -119,16 +120,29 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) => {
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="password">
               Mot de passe
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={6}
-              placeholder="********"
-              className="input-modern mt-1"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                placeholder="********"
+                className="input-modern mt-1 pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              >
+                {showPassword ? (
+                  <EyeOffIcon className="w-5 h-5" />
+                ) : (
+                  <EyeIcon className="w-5 h-5" />
+                )}
+              </button>
+            </div>
           </div>
 
           <div className="mt-8">
@@ -157,10 +171,10 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onFinish }) => {
 
   const renderStep = () => {
     switch (step) {
-      case 0: return <WelcomeStep />;
-      case 1: return <FeatureStep />;
-      case 2: return <AuthStep />;
-      default: return <WelcomeStep />;
+      case 0: return renderWelcomeStep();
+      case 1: return renderFeatureStep();
+      case 2: return renderAuthStep();
+      default: return renderWelcomeStep();
     }
   };
 

@@ -103,6 +103,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
                 setAllTransactions([]);
                 setGoals([]);
                 setUserProfile(null);
+                setOnboardingComplete(false);
+                setInitialSetupComplete(false);
+                setChecklist(initialChecklist);
+                setCurrentView({ type: 'personal' });
                 setLoading(false);
             }
         });
