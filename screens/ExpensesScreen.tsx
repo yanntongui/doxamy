@@ -35,10 +35,10 @@ const TransactionDetailModal: React.FC<{
 
     return (
         <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-sm">
+            <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-sm">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="font-bold text-dark dark:text-light text-lg">Détail de la Transaction</h3>
-                    <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-light" /></button>
+                    <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-text-secondary hover:text-dark dark:hover:text-light" /></button>
                 </div>
 
                 <div className="space-y-4">
@@ -48,7 +48,7 @@ const TransactionDetailModal: React.FC<{
                         </div>
                         <div>
                             <p className="font-bold text-dark dark:text-light text-xl">{transaction.description}</p>
-                            <p className="text-gray-500 dark:text-gray-400">{transaction.type === 'transfer' ? 'Transfert' : transaction.category}</p>
+                            <p className="text-gray-500 dark:text-text-secondary">{transaction.type === 'transfer' ? 'Transfert' : transaction.category}</p>
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@ const TransactionDetailModal: React.FC<{
                         </p>
                     </div>
 
-                    <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2 border-t dark:border-gray-700 pt-3">
+                    <div className="text-sm text-gray-600 dark:text-text-secondary space-y-2 border-t dark:border-dark-border pt-3">
                         <div className="flex justify-between">
                             <span className="font-semibold">Date:</span>
                             <span>{transaction.date}</span>
@@ -86,7 +86,7 @@ const TransactionDetailModal: React.FC<{
                             <div className="flex justify-between">
                                 <span className="font-semibold">Liée à:</span>
                                 <span className="truncate max-w-[60%] flex items-center">
-                                    <ScaleIcon className="w-4 h-4 mr-1 text-gray-400" />
+                                    <ScaleIcon className="w-4 h-4 mr-1 text-text-muted" />
                                     {debtCreditLink.name}
                                 </span>
                             </div>
@@ -95,7 +95,7 @@ const TransactionDetailModal: React.FC<{
                             <div className="flex justify-between">
                                 <span className="font-semibold">Liée à:</span>
                                 <span className="truncate max-w-[60%] flex items-center">
-                                    <PiggyBankIcon className="w-4 h-4 mr-1 text-gray-400" />
+                                    <PiggyBankIcon className="w-4 h-4 mr-1 text-text-muted" />
                                     {goalLink.name}
                                 </span>
                             </div>
@@ -318,20 +318,20 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onBack, transac
 
             <div className="space-y-4">
                 <div className="grid grid-cols-3 gap-2 rounded-lg bg-gray-200 dark:bg-gray-800 p-1 mb-4">
-                    <button onClick={() => setType('expense')} className={`py-2 rounded-md font-semibold transition-all ${type === 'expense' ? 'bg-white dark:bg-gray-700 text-danger shadow' : 'text-gray-600 dark:text-gray-400'}`}>Dépense</button>
-                    <button onClick={() => setType('income')} className={`py-2 rounded-md font-semibold transition-all ${type === 'income' ? 'bg-white dark:bg-gray-700 text-success shadow' : 'text-gray-600 dark:text-gray-400'}`}>Revenu</button>
-                    <button onClick={() => setType('transfer')} className={`py-2 rounded-md font-semibold transition-all ${type === 'transfer' ? 'bg-white dark:bg-gray-700 text-primary shadow' : 'text-gray-600 dark:text-gray-400'}`}>Transfert</button>
+                    <button onClick={() => setType('expense')} className={`py-2 rounded-md font-semibold transition-all ${type === 'expense' ? 'bg-white dark:bg-gray-700 text-danger shadow' : 'text-gray-600 dark:text-text-muted'}`}>Dépense</button>
+                    <button onClick={() => setType('income')} className={`py-2 rounded-md font-semibold transition-all ${type === 'income' ? 'bg-white dark:bg-gray-700 text-success shadow' : 'text-gray-600 dark:text-text-muted'}`}>Revenu</button>
+                    <button onClick={() => setType('transfer')} className={`py-2 rounded-md font-semibold transition-all ${type === 'transfer' ? 'bg-white dark:bg-gray-700 text-primary shadow' : 'text-gray-600 dark:text-text-muted'}`}>Transfert</button>
                 </div>
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Montant (FCFA)</label>
-                    <input type="number" placeholder="0" value={amount} onChange={e => setAmount(e.target.value)} className="mt-1 text-center text-3xl font-bold w-full p-2 bg-white dark:bg-gray-800 border-b-2 border-primary focus:outline-none text-dark dark:text-light" />
+                    <input type="number" placeholder="0" value={amount} onChange={e => setAmount(e.target.value)} className="mt-1 text-center text-3xl font-bold w-full p-2 bg-white dark:bg-dark-card border-b-2 border-primary focus:outline-none text-dark dark:text-light" />
                 </div>
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Date</label>
                     <div className="relative mt-1">
-                        <input type="date" value={date} onChange={e => setDate(e.target.value)} className="block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light pr-10" />
+                        <input type="date" value={date} onChange={e => setDate(e.target.value)} className="block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light pr-10" />
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                            <CalendarIcon className="h-5 w-5 text-gray-400" />
+                            <CalendarIcon className="h-5 w-5 text-text-muted" />
                         </div>
                     </div>
                 </div>
@@ -340,33 +340,33 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onBack, transac
                     <>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Compte Source</label>
-                            <select value={accountId} onChange={e => setAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light">
+                            <select value={accountId} onChange={e => setAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light">
                                 {accounts.map(acc => <option key={acc.id} value={acc.id}>{acc.name}</option>)}
                             </select>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Compte Destination</label>
-                            <select value={destinationAccountId} onChange={e => setDestinationAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light">
+                            <select value={destinationAccountId} onChange={e => setDestinationAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light">
                                 <option value="" disabled>Sélectionner un compte</option>
                                 {accounts.filter(acc => acc.id !== accountId).map(acc => <option key={acc.id} value={acc.id}>{acc.name}</option>)}
                             </select>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Frais de transfert (Optionnel)</label>
-                            <input type="number" placeholder="Ex: 100" value={transferFee} onChange={e => setTransferFee(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light" />
+                            <input type="number" placeholder="Ex: 100" value={transferFee} onChange={e => setTransferFee(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light" />
                         </div>
                     </>
                 ) : (
                     <>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Catégorie</label>
-                            <select value={category} onChange={e => setCategory(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light">
+                            <select value={category} onChange={e => setCategory(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light">
                                 {availableCategories.map(cat => <option key={cat}>{cat}</option>)}
                             </select>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Compte</label>
-                            <select value={accountId} onChange={e => setAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light">
+                            <select value={accountId} onChange={e => setAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light">
                                 {accounts.map(acc => <option key={acc.id} value={acc.id}>{acc.name}</option>)}
                             </select>
                         </div>
@@ -376,7 +376,7 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onBack, transac
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
                     <div className="flex space-x-2 mt-1">
-                        <input type="text" placeholder={type === 'transfer' ? "Ex: Transfert vers Wave" : "Ex: Courses du weekend"} value={description} onChange={e => setDescription(e.target.value)} className="block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light" />
+                        <input type="text" placeholder={type === 'transfer' ? "Ex: Transfert vers Wave" : "Ex: Courses du weekend"} value={description} onChange={e => setDescription(e.target.value)} className="block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light" />
                         <button
                             onClick={handleAutoCategorize}
                             disabled={isCategorizing || !description}
@@ -390,7 +390,7 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onBack, transac
 
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Fréquence</label>
-                    <select value={frequency} onChange={e => setFrequency(e.target.value as any)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light">
+                    <select value={frequency} onChange={e => setFrequency(e.target.value as any)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light">
                         <option value="ponctuel">Ponctuel</option>
                         <option value="hebdomadaire">Hebdomadaire</option>
                         <option value="mensuel">Mensuel</option>
@@ -419,11 +419,11 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onBack, transac
                     </button>
                 </div>
                 {attachmentDisplayName && (
-                    <p className="text-center text-sm text-gray-600 dark:text-gray-400 -mt-2 truncate" title={attachmentDisplayName}>
+                    <p className="text-center text-sm text-gray-600 dark:text-text-muted -mt-2 truncate" title={attachmentDisplayName}>
                         Fichier: {attachmentDisplayName}
                     </p>
                 )}
-                <button onClick={handleSubmit} className="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                <button onClick={handleSubmit} className="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
                     Enregistrer
                 </button>
             </div>
@@ -572,24 +572,24 @@ const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ showAddForm, setShowAdd
 
     return (
         <div className="p-4 bg-light dark:bg-gray-900 min-h-full">
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm mb-4">
+            <div className="bg-white dark:bg-dark-card p-4 rounded-xl mb-4">
                 <div className="flex justify-between text-center">
                     <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Revenus</p>
+                        <p className="text-sm text-gray-500 dark:text-text-secondary">Revenus</p>
                         <p className="font-bold text-success text-lg">{summaryData.income.toLocaleString('fr-FR')}</p>
                     </div>
                     <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Dépenses</p>
+                        <p className="text-sm text-gray-500 dark:text-text-secondary">Dépenses</p>
                         <p className="font-bold text-danger text-lg">-{summaryData.expenses.toLocaleString('fr-FR')}</p>
                     </div>
                     <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Solde</p>
+                        <p className="text-sm text-gray-500 dark:text-text-secondary">Solde</p>
                         <p className="font-bold text-primary text-lg">{summaryData.balance.toLocaleString('fr-FR')}</p>
                     </div>
                 </div>
-                <div className="flex justify-center space-x-2 mt-3 pt-3 border-t dark:border-gray-700">
-                    <button onClick={() => setPeriod('current')} className={`px-3 py-1 text-xs font-semibold rounded-full shadow-sm transition-colors ${period === 'current' ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'}`}>Ce mois-ci</button>
-                    <button onClick={() => setPeriod('last')} className={`px-3 py-1 text-xs font-semibold rounded-full shadow-sm transition-colors ${period === 'last' ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'}`}>Mois dernier</button>
+                <div className="flex justify-center space-x-2 mt-3 pt-3 border-t dark:border-dark-border">
+                    <button onClick={() => setPeriod('current')} className={`px-3 py-1 text-xs font-semibold rounded-full transition-colors ${period === 'current' ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-text-secondary'}`}>Ce mois-ci</button>
+                    <button onClick={() => setPeriod('last')} className={`px-3 py-1 text-xs font-semibold rounded-full transition-colors ${period === 'last' ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-text-secondary'}`}>Mois dernier</button>
                 </div>
             </div>
 
@@ -599,49 +599,49 @@ const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ showAddForm, setShowAdd
                     placeholder="Rechercher..."
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
-                    className="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-light"
+                    className="w-full px-4 py-2 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-light"
                 />
-                <button onClick={() => setShowFilters(!showFilters)} className={`p-2 bg-white dark:bg-gray-800 border rounded-lg transition-colors ${showFilters ? 'border-primary bg-primary/10' : 'border-gray-300 dark:border-gray-600'}`}>
-                    <FilterIcon className={`w-5 h-5 ${showFilters ? 'text-primary' : 'text-gray-600 dark:text-gray-400'}`} />
+                <button onClick={() => setShowFilters(!showFilters)} className={`p-2 bg-white dark:bg-dark-card border rounded-lg transition-colors ${showFilters ? 'border-primary bg-primary/10' : 'border-gray-300 dark:border-gray-600'}`}>
+                    <FilterIcon className={`w-5 h-5 ${showFilters ? 'text-primary' : 'text-gray-600 dark:text-text-muted'}`} />
                 </button>
             </div>
 
             {showFilters && (
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-4 shadow-sm space-y-4">
+                <div className="bg-white dark:bg-dark-card p-4 rounded-lg mb-4 space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label className="text-xs font-medium text-gray-600 dark:text-gray-300">Catégorie</label>
+                            <label className="text-xs font-medium text-gray-600 dark:text-text-secondary">Catégorie</label>
                             <select value={filterCategory} onChange={e => setFilterCategory(e.target.value)} className="mt-1 block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-dark dark:text-light">
                                 {availableCategories.map(cat => <option key={cat} value={cat}>{cat || 'Toutes'}</option>)}
                             </select>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                             <div>
-                                <label className="text-xs font-medium text-gray-600 dark:text-gray-300">Date de début</label>
+                                <label className="text-xs font-medium text-gray-600 dark:text-text-secondary">Date de début</label>
                                 <div className="relative mt-1">
                                     <input type="date" value={filterStartDate} onChange={e => setFilterStartDate(e.target.value)} className="block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-dark dark:text-light pr-10" />
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <CalendarIcon className="h-5 w-5 text-gray-400" />
+                                        <CalendarIcon className="h-5 w-5 text-text-muted" />
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <label className="text-xs font-medium text-gray-600 dark:text-gray-300">Date de fin</label>
+                                <label className="text-xs font-medium text-gray-600 dark:text-text-secondary">Date de fin</label>
                                 <div className="relative mt-1">
                                     <input type="date" value={filterEndDate} onChange={e => setFilterEndDate(e.target.value)} className="block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-dark dark:text-light pr-10" />
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <CalendarIcon className="h-5 w-5 text-gray-400" />
+                                        <CalendarIcon className="h-5 w-5 text-text-muted" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                             <div>
-                                <label className="text-xs font-medium text-gray-600 dark:text-gray-300">Montant Min</label>
+                                <label className="text-xs font-medium text-gray-600 dark:text-text-secondary">Montant Min</label>
                                 <input type="number" placeholder="ex: 500" value={filterMinAmount} onChange={e => setFilterMinAmount(e.target.value)} className="mt-1 block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-dark dark:text-light" />
                             </div>
                             <div>
-                                <label className="text-xs font-medium text-gray-600 dark:text-gray-300">Montant Max</label>
+                                <label className="text-xs font-medium text-gray-600 dark:text-text-secondary">Montant Max</label>
                                 <input type="number" placeholder="ex: 10000" value={filterMaxAmount} onChange={e => setFilterMaxAmount(e.target.value)} className="mt-1 block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-dark dark:text-light" />
                             </div>
                         </div>
@@ -674,7 +674,7 @@ const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ showAddForm, setShowAdd
                     }
 
                     return (
-                        <div key={tx.id} className="w-full bg-white dark:bg-gray-800 p-3 rounded-lg flex items-center text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <div key={tx.id} className="w-full bg-white dark:bg-dark-card p-3 rounded-lg flex items-center text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                             <div onClick={() => setSelectedTx(tx)} className="flex-grow flex items-center cursor-pointer">
                                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
                                     <Icon className="w-5 h-5 text-primary" />
@@ -684,7 +684,7 @@ const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ showAddForm, setShowAdd
                                         <span>{tx.description}</span>
                                         {tx.frequency !== 'ponctuel' && <RepeatIcon className="w-4 h-4 text-blue-400 ml-2" title={`Transaction ${tx.frequency}`} />}
                                         {debtCreditLink && (
-                                            <span className="ml-2 mt-1 text-xs bg-gray-200 dark:bg-gray-600 px-2 py-0.5 rounded-full flex items-center text-gray-600 dark:text-gray-300" title={`Liée à: ${debtCreditLink.name}`}>
+                                            <span className="ml-2 mt-1 text-xs bg-gray-200 dark:bg-gray-600 px-2 py-0.5 rounded-full flex items-center text-gray-600 dark:text-text-secondary" title={`Liée à: ${debtCreditLink.name}`}>
                                                 <ScaleIcon className="w-3 h-3 mr-1" />
                                                 {debtCreditLink.name}
                                             </span>
@@ -696,7 +696,7 @@ const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ showAddForm, setShowAdd
                                             </span>
                                         )}
                                     </div>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>
+                                    <p className="text-xs text-gray-500 dark:text-text-secondary">{subtitle}</p>
                                 </div>
                                 <p className={`font-bold pr-4 ${tx.type === 'income' ? 'text-success' : tx.type === 'expense' ? 'text-danger' : 'text-primary'}`}>
                                     {tx.type === 'income' ? '+' : tx.type === 'expense' ? '-' : ''} {tx.amount.toLocaleString('fr-FR')} FCFA

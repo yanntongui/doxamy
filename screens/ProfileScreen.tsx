@@ -54,7 +54,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ onBack }) => {
                 <button onClick={onBack} className="text-primary font-bold">&lt; Retour</button>
                 <h1 className="text-xl font-bold text-dark dark:text-light mx-auto">Mon Profil</h1>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm max-w-lg mx-auto">
+            <div className="bg-white dark:bg-dark-card p-6 rounded-xl max-w-lg mx-auto">
                 <div className="flex flex-col items-center">
                     <div className="relative mb-4">
                         <img src={userProfile.avatar} alt="Avatar" className="w-24 h-24 rounded-full" />
@@ -73,16 +73,16 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ onBack }) => {
                             className="text-2xl font-bold text-dark dark:text-light text-center bg-gray-100 dark:bg-gray-700 border-b-2 border-primary focus:outline-none rounded-t-md p-2"
                         />
                     )}
-                    <p className="text-gray-500 dark:text-gray-400">{userProfile.email}</p>
+                    <p className="text-gray-500 dark:text-text-secondary">{userProfile.email}</p>
                 </div>
 
-                <div className="mt-8 border-t dark:border-gray-700 pt-6 space-y-4">
+                <div className="mt-8 border-t dark:border-dark-border pt-6 space-y-4">
                     <div className="flex justify-between">
-                        <span className="font-medium text-gray-600 dark:text-gray-300">Email</span>
+                        <span className="font-medium text-gray-600 dark:text-text-secondary">Email</span>
                         <span className="text-gray-800 dark:text-gray-100">{userProfile.email}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                        <span className="font-medium text-gray-600 dark:text-gray-300">Nom</span>
+                        <span className="font-medium text-gray-600 dark:text-text-secondary">Nom</span>
                         {!isEditing ? (
                             <span className="text-gray-800 dark:text-gray-100">{userProfile.name}</span>
                         ) : (

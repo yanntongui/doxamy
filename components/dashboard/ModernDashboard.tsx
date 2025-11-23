@@ -118,48 +118,48 @@ const ModernDashboard: React.FC<ModernDashboardProps> = ({ onNavigate }) => {
 
     return (
         <motion.div
-            className="p-4 lg:p-8 space-y-6 min-h-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#0d1117] dark:via-[#1a1f2e] dark:to-[#0d1117]"
+            className="p-4 lg:p-8 space-y-8 min-h-full bg-light dark:bg-dark-bg"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
         >
-            {/* Decorative Gradient Blob for Dark Mode */}
+            {/* Decorative Gradient Blobs */}
             <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-[120px] mix-blend-screen dark:block hidden"></div>
-                <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px] mix-blend-screen dark:block hidden"></div>
+                <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-primary-500/10 dark:bg-primary-500/5 blur-[150px]"></div>
+                <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-secondary-500/10 dark:bg-secondary-500/5 blur-[150px]"></div>
             </div>
 
             <div className="relative z-10 space-y-6">
                 {/* Header Section */}
-                <motion.div variants={itemVariants} className="flex justify-between items-center">
+                <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div className="flex items-center space-x-4">
                         <div className="relative">
-                            <img src={userProfile.avatar} alt="Profile" className="w-14 h-14 rounded-full border-2 border-white dark:border-gray-700 shadow-md" />
-                            <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
+                            <img src={userProfile.avatar} alt="Profile" className="w-16 h-16 rounded-2xl border-2 border-primary-200 dark:border-primary-800 shadow-lg" />
+                            <div className="absolute bottom-0 right-0 w-5 h-5 bg-success border-3 border-white dark:border-dark-bg rounded-full"></div>
                         </div>
                         <div>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Bon retour,</p>
-                            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">{userProfile.name}</h1>
+                            <p className="text-text-secondary dark:text-text-muted text-sm font-medium">Bon retour,</p>
+                            <h1 className="text-3xl font-display font-bold text-gray-900 dark:text-white">{userProfile.name}</h1>
                         </div>
                     </div>
                     <div className="flex items-center space-x-3">
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                            className="p-3 rounded-xl bg-white dark:bg-dark-card shadow-sm border border-gray-200 dark:border-dark-border text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 transition-all duration-200"
                             title={theme === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair'}
                         >
                             {theme === 'light' ? <MoonIcon className="w-5 h-5" /> : <SunIcon className="w-5 h-5" />}
                         </button>
-                        <div className="flex bg-white dark:bg-gray-800 rounded-full p-1 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <div className="flex bg-white dark:bg-dark-card rounded-xl p-1 shadow-sm border border-gray-200 dark:border-dark-border">
                             <button
                                 onClick={() => setPeriod('current')}
-                                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${period === 'current' ? 'bg-primary text-white shadow-md' : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+                                className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${period === 'current' ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
                             >
                                 Ce mois
                             </button>
                             <button
                                 onClick={() => setPeriod('last')}
-                                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${period === 'last' ? 'bg-primary text-white shadow-md' : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+                                className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${period === 'last' ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
                             >
                                 Mois dernier
                             </button>
@@ -170,43 +170,53 @@ const ModernDashboard: React.FC<ModernDashboardProps> = ({ onNavigate }) => {
                 {/* Main Stats Cards */}
                 <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* Global Balance */}
-                    <div className="glass-card p-6 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <PiggyBankIcon className="w-24 h-24 text-primary" />
+                    <div className="stat-card group">
+                        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                            <PiggyBankIcon className="w-28 h-28 text-primary-500" />
                         </div>
-                        <p className="text-gray-500 dark:text-gray-400 font-medium mb-1">Solde Global</p>
-                        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-                            {dashboardData.globalBalance.toLocaleString('fr-FR')} <span className="text-lg text-gray-500">FCFA</span>
-                        </h2>
-                        <div className="flex items-center text-sm text-green-500 bg-green-100 dark:bg-green-900/30 w-fit px-2 py-1 rounded-md">
-                            <TrendUpIcon className="w-4 h-4 mr-1" />
-                            <span>+12% vs mois dernier</span>
+                        <div className="relative z-10">
+                            <p className="text-text-secondary dark:text-text-muted text-sm font-medium mb-2">Solde Global</p>
+                            <h2 className="text-4xl font-display font-bold text-gray-900 dark:text-white mb-3">
+                                {dashboardData.globalBalance.toLocaleString('fr-FR')}
+                                <span className="text-xl text-text-muted ml-2">FCFA</span>
+                            </h2>
+                            <div className="flex items-center text-sm font-medium text-success bg-success/10 w-fit px-3 py-1.5 rounded-lg">
+                                <TrendUpIcon className="w-4 h-4 mr-1.5" />
+                                <span>+12% vs mois dernier</span>
+                            </div>
                         </div>
                     </div>
 
                     {/* Income */}
-                    <div className="glass-card p-6 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-4 opacity-10">
-                            <TrendUpIcon className="w-24 h-24 text-green-500" />
+                    <div className="stat-card group">
+                        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                            <TrendUpIcon className="w-28 h-28 text-success" />
                         </div>
-                        <p className="text-gray-500 dark:text-gray-400 font-medium mb-1">Revenus</p>
-                        <h2 className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
-                            +{dashboardData.income.toLocaleString('fr-FR')} <span className="text-lg text-gray-500">FCFA</span>
-                        </h2>
-                        <p className="text-sm text-gray-400">Total encaissé</p>
+                        <div className="relative z-10">
+                            <p className="text-text-secondary dark:text-text-muted text-sm font-medium mb-2">Revenus</p>
+                            <h2 className="text-4xl font-display font-bold text-success mb-3">
+                                +{dashboardData.income.toLocaleString('fr-FR')}
+                                <span className="text-xl text-text-muted ml-2">FCFA</span>
+                            </h2>
+                            <p className="text-sm text-text-secondary">Total encaissé</p>
+                        </div>
                     </div>
 
                     {/* Expenses */}
-                    <div className="glass-card p-6 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-4 opacity-10">
-                            <TrendDownIcon className="w-24 h-24 text-red-500" />
+                    <div className="stat-card group">
+                        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                            <TrendDownIcon className="w-28 h-28 text-danger" />
                         </div>
-                        <p className="text-gray-500 dark:text-gray-400 font-medium mb-1">Dépenses</p>
-                        <h2 className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
-                            -{dashboardData.expenses.toLocaleString('fr-FR')} <span className="text-lg text-gray-500">FCFA</span>
-                        </h2>
-                        <p className="text-sm text-gray-400">Total dépensé</p>
+                        <div className="relative z-10">
+                            <p className="text-text-secondary dark:text-text-muted text-sm font-medium mb-2">Dépenses</p>
+                            <h2 className="text-4xl font-display font-bold text-danger mb-3">
+                                -{dashboardData.expenses.toLocaleString('fr-FR')}
+                                <span className="text-xl text-text-muted ml-2">FCFA</span>
+                            </h2>
+                            <p className="text-sm text-text-secondary">Total dépensé</p>
+                        </div>
                     </div>
+
                 </motion.div>
 
                 {/* Charts Section */}

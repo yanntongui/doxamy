@@ -83,7 +83,7 @@ const App: React.FC = () => {
         handleNavigate('Transactions');
         setShowAddTransaction(true);
       }}
-      className="fixed z-30 bottom-28 left-1/2 -translate-x-1/2 md:bottom-8 md:right-8 md:left-auto md:translate-x-0 w-16 h-16 bg-primary rounded-full text-white flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
+      className="fixed z-30 bottom-28 left-1/2 -translate-x-1/2 md:bottom-8 md:right-8 md:left-auto md:translate-x-0 w-16 h-16 bg-primary rounded-full text-white flex items-center justify-center hover:bg-blue-700 transition-colors"
       aria-label="Ajouter une transaction"
     >
       <PlusIcon className="w-8 h-8" />

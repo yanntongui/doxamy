@@ -12,9 +12,9 @@ const HelpScreen: React.FC<HelpScreenProps> = ({ onBack }) => {
                 <button onClick={onBack} className="text-primary font-bold">&lt; Retour</button>
                 <h1 className="text-xl font-bold text-dark dark:text-light mx-auto">Aide & Support</h1>
             </div>
-            <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+            <div className="text-center p-8 bg-white dark:bg-dark-card rounded-xl">
                 <HelpIcon className="w-16 h-16 text-primary mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400">Cette fonctionnalité est en cours de développement.</p>
+                <p className="text-gray-600 dark:text-text-muted">Cette fonctionnalité est en cours de développement.</p>
                 <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">Trouvez des réponses à vos questions ou contactez notre support.</p>
             </div>
         </div>

@@ -19,7 +19,7 @@ const InviteForm: React.FC<{ spaceId: string }> = ({ spaceId }) => {
 
     return (
         <div>
-            <label className="text-xs font-medium text-gray-600 dark:text-gray-300">Inviter un nouveau membre</label>
+            <label className="text-xs font-medium text-gray-600 dark:text-text-secondary">Inviter un nouveau membre</label>
             <div className="flex space-x-2 mt-1">
                 <input
                     type="email"
@@ -59,23 +59,23 @@ const FamilyModeScreen: React.FC<FamilyModeScreenProps> = ({ onBack }) => {
             </div>
 
             {familySpaces.length === 0 ? (
-                <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+                <div className="text-center p-8 bg-white dark:bg-dark-card rounded-xl">
                     <UsersIcon className="w-16 h-16 text-primary mx-auto mb-4" />
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">Vous n'êtes dans aucun espace familial.</p>
+                    <p className="text-gray-600 dark:text-text-muted mb-4">Vous n'êtes dans aucun espace familial.</p>
                     <p className="text-gray-500 dark:text-gray-500 text-sm">Créez un espace pour inviter des membres de votre famille ou votre partenaire et gérer un budget commun.</p>
                 </div>
             ) : (
                 <div className="space-y-4">
                     {familySpaces.map(space => (
-                        <div key={space.id} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
+                        <div key={space.id} className="bg-white dark:bg-dark-card p-4 rounded-xl">
                             <h2 className="font-bold text-dark dark:text-light text-lg mb-3">{space.name}</h2>
-                            <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Membres ({space.members.length})</p>
-                            <div className="space-y-1 text-sm text-gray-500 dark:text-gray-400">
+                            <p className="text-sm font-medium text-gray-600 dark:text-text-secondary mb-2">Membres ({space.members.length})</p>
+                            <div className="space-y-1 text-sm text-gray-500 dark:text-text-secondary">
                                 {space.members.map(member => (
                                     <p key={member}>{member} {member === space.ownerId && '(Propriétaire)'}</p>
                                 ))}
                             </div>
-                            <div className="mt-4 pt-4 border-t dark:border-gray-700">
+                            <div className="mt-4 pt-4 border-t dark:border-dark-border">
                                 {space.ownerId === userProfile.email ? (
                                     <InviteForm spaceId={space.id} />
                                 ) : (
@@ -91,10 +91,10 @@ const FamilyModeScreen: React.FC<FamilyModeScreenProps> = ({ onBack }) => {
 
             {showCreateForm && (
                 <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-sm">
+                    <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-sm">
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="font-bold text-dark dark:text-light text-lg">Créer un Espace</h3>
-                            <button onClick={() => setShowCreateForm(false)}><XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-light" /></button>
+                            <button onClick={() => setShowCreateForm(false)}><XIcon className="w-6 h-6 text-gray-500 dark:text-text-secondary hover:text-dark dark:hover:text-light" /></button>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Nom de l'espace</label>

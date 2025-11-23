@@ -19,13 +19,13 @@ const navItems: { name: NavItem; icon: React.ComponentType<{ className?: string 
 
 const BottomNavBar: React.FC<BottomNavBarProps> = ({ activeItem, onNavigate }) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-24 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex justify-around items-center pb-4 z-40 md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 h-24 bg-white dark:bg-dark-card border-t border-gray-200 dark:border-dark-border flex justify-around items-center pb-4 z-40 md:hidden">
       {navItems.map(({ name, icon: Icon }) => (
         <button
           key={name}
           onClick={() => onNavigate(name)}
           className={`flex flex-col items-center justify-center text-xs transition-colors w-1/5 pt-2 ${
-            activeItem === name ? 'text-primary' : 'text-gray-500 dark:text-gray-400 hover:text-primary'
+            activeItem === name ? 'text-primary' : 'text-gray-500 dark:text-text-secondary hover:text-primary'
           }`}
         >
           <Icon className="w-6 h-6 mb-1" />

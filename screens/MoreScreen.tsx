@@ -17,16 +17,16 @@ const SpaceSwitcher: React.FC = () => {
     <div className="relative mb-4">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border dark:border-gray-700 shadow-sm"
+        className="w-full flex items-center justify-between p-3 bg-white dark:bg-dark-card rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border dark:border-dark-border"
       >
         <div>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Espace actuel</p>
+          <p className="text-xs text-gray-500 dark:text-text-secondary">Espace actuel</p>
           <p className="font-bold text-dark dark:text-light">{currentView.type === 'personal' ? 'Personnel' : currentView.spaceName}</p>
         </div>
-        <SwitchHorizontalIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+        <SwitchHorizontalIcon className="w-5 h-5 text-gray-500 dark:text-text-secondary" />
       </button>
       {isOpen && (
-        <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-700 rounded-lg shadow-xl border dark:border-gray-600 z-20 py-1">
+        <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-700 rounded-lg border dark:border-gray-600 z-20 py-1">
           <button onClick={() => handleSelect({ type: 'personal' })} className="w-full text-left px-4 py-2 text-sm text-dark dark:text-light hover:bg-gray-100 dark:hover:bg-gray-600">Personnel</button>
           {familySpaces.map(space => (
             <button key={space.id} onClick={() => handleSelect({ type: 'family', spaceId: space.id, spaceName: space.name })} className="w-full text-left px-4 py-2 text-sm text-dark dark:text-light hover:bg-gray-100 dark:hover:bg-gray-600">{space.name}</button>
@@ -70,21 +70,21 @@ const MoreScreen: React.FC<MoreScreenProps> = ({ onNavigate }) => {
 
   return (
     <div className="bg-light dark:bg-gray-900 min-h-full">
-      <div className="p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 bg-white dark:bg-dark-card border-b border-gray-200 dark:border-dark-border">
         <h1 className="text-2xl font-bold text-dark dark:text-light text-center">Plus</h1>
       </div>
       <div className="p-4">
         <SpaceSwitcher />
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+        <div className="bg-white dark:bg-dark-card rounded-xl">
           {menuItems.map((item, index) => (
             <button
               key={item.name}
               onClick={() => handleItemClick(item.screen, item.name)}
-              className={`w-full flex items-center p-4 text-left ${index < menuItems.length - 1 ? 'border-b border-gray-100 dark:border-gray-700' : ''}`}
+              className={`w-full flex items-center p-4 text-left ${index < menuItems.length - 1 ? 'border-b border-gray-100 dark:border-dark-border' : ''}`}
             >
-              <item.icon className={`w-6 h-6 mr-4 ${item.color || 'text-gray-500 dark:text-gray-400'}`} />
+              <item.icon className={`w-6 h-6 mr-4 ${item.color || 'text-gray-500 dark:text-text-secondary'}`} />
               <span className={`flex-grow font-medium ${item.color || 'text-dark dark:text-light'}`}>{item.name}</span>
-              {item.name !== "Déconnexion" && <ChevronRightIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />}
+              {item.name !== "Déconnexion" && <ChevronRightIcon className="w-5 h-5 text-text-muted dark:text-gray-500" />}
             </button>
           ))}
         </div>

@@ -15,7 +15,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
                 <button onClick={onBack} className="text-primary font-bold">&lt; Retour</button>
                 <h1 className="text-xl font-bold text-dark dark:text-light mx-auto">Paramètres</h1>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm max-w-lg mx-auto">
+            <div className="bg-white dark:bg-dark-card p-4 rounded-xl max-w-lg mx-auto">
                 <h2 className="text-lg font-semibold text-dark dark:text-light mb-4">Apparence</h2>
                 <div className="flex justify-between items-center p-4 bg-light dark:bg-gray-700 rounded-lg">
                     <span className="font-medium text-dark dark:text-light">Thème Sombre</span>

@@ -56,7 +56,7 @@ const InitialSetupWizard: React.FC<InitialSetupWizardProps> = ({ onFinish }) => 
             case 1: return (
                 <form onSubmit={handleCreateAccount}>
                     <h2 className="text-xl font-bold text-dark dark:text-light mb-2">Créez votre premier compte</h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Commençons par ajouter votre compte principal.</p>
+                    <p className="text-sm text-gray-500 dark:text-text-secondary mb-6">Commençons par ajouter votre compte principal.</p>
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Nom du compte</label>
@@ -67,7 +67,7 @@ const InitialSetupWizard: React.FC<InitialSetupWizardProps> = ({ onFinish }) => 
                             <input type="number" value={initialBalance} onChange={e => setInitialBalance(e.target.value)} placeholder="100000" required className="mt-1 block w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light" />
                         </div>
                     </div>
-                    <button type="submit" className="mt-8 w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                    <button type="submit" className="mt-8 w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors">
                         Continuer
                     </button>
                 </form>
@@ -75,11 +75,11 @@ const InitialSetupWizard: React.FC<InitialSetupWizardProps> = ({ onFinish }) => 
             case 2: return (
                 <form onSubmit={handleAddFirstTransaction}>
                     <h2 className="text-xl font-bold text-dark dark:text-light mb-2">Enregistrez une transaction</h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Ajoutez votre dernière dépense ou revenu pour voir comment ça marche.</p>
+                    <p className="text-sm text-gray-500 dark:text-text-secondary mb-6">Ajoutez votre dernière dépense ou revenu pour voir comment ça marche.</p>
                     <div className="space-y-4">
                         <div className="grid grid-cols-2 gap-2 rounded-lg bg-gray-200 dark:bg-gray-700 p-1">
-                            <button type="button" onClick={() => setTxType('expense')} className={`py-2 rounded-md font-semibold transition-all ${txType === 'expense' ? 'bg-white dark:bg-gray-800 text-danger shadow' : 'text-gray-600 dark:text-gray-400'}`}>Dépense</button>
-                            <button type="button" onClick={() => setTxType('income')} className={`py-2 rounded-md font-semibold transition-all ${txType === 'income' ? 'bg-white dark:bg-gray-800 text-success shadow' : 'text-gray-600 dark:text-gray-400'}`}>Revenu</button>
+                            <button type="button" onClick={() => setTxType('expense')} className={`py-2 rounded-md font-semibold transition-all ${txType === 'expense' ? 'bg-white dark:bg-dark-card text-danger shadow' : 'text-gray-600 dark:text-text-muted'}`}>Dépense</button>
+                            <button type="button" onClick={() => setTxType('income')} className={`py-2 rounded-md font-semibold transition-all ${txType === 'income' ? 'bg-white dark:bg-dark-card text-success shadow' : 'text-gray-600 dark:text-text-muted'}`}>Revenu</button>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
@@ -91,10 +91,10 @@ const InitialSetupWizard: React.FC<InitialSetupWizardProps> = ({ onFinish }) => 
                         </div>
                     </div>
                     <div className="mt-8 flex space-x-3">
-                        <button type="button" onClick={onFinish} className="flex-1 w-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 font-bold py-3 rounded-lg shadow-sm hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
+                        <button type="button" onClick={onFinish} className="flex-1 w-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 font-bold py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
                             Plus tard
                         </button>
-                        <button type="submit" className="flex-1 w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                        <button type="submit" className="flex-1 w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors">
                             Terminer
                         </button>
                     </div>
@@ -106,7 +106,7 @@ const InitialSetupWizard: React.FC<InitialSetupWizardProps> = ({ onFinish }) => 
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-light dark:bg-gray-900">
-            <div className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+            <div className="w-full max-w-sm bg-white dark:bg-dark-card rounded-2xl p-8">
                 <div className="text-center mb-6">
                     <LogoIcon className="w-12 h-12 text-primary mx-auto mb-3" />
                     <h1 className="text-2xl font-bold text-dark dark:text-light">Configuration</h1>

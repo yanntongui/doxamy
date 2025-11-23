@@ -113,25 +113,25 @@ const ReportScreen: React.FC<ReportScreenProps> = ({ onBack }) => {
             </div>
 
             <div className="space-y-6">
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm grid grid-cols-2 text-center divide-x dark:divide-gray-700">
+                <div className="bg-white dark:bg-dark-card p-4 rounded-xl grid grid-cols-2 text-center divide-x dark:divide-gray-700">
                     <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Revenus Totaux</p>
+                        <p className="text-sm text-gray-500 dark:text-text-secondary">Revenus Totaux</p>
                         <p className="font-bold text-lg text-success">{reportData.totalIncome.toLocaleString('fr-FR')} FCFA</p>
                     </div>
                     <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Dépenses Totales</p>
+                        <p className="text-sm text-gray-500 dark:text-text-secondary">Dépenses Totales</p>
                         <p className="font-bold text-lg text-danger">-{reportData.totalExpenses.toLocaleString('fr-FR')} FCFA</p>
                     </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
+                <div className="bg-white dark:bg-dark-card p-4 rounded-xl">
                     <h3 className="font-bold text-dark dark:text-light mb-4 text-center">Répartition des Dépenses</h3>
                     <ReportPieChart data={reportData.expensesByCategory} />
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
+                <div className="bg-white dark:bg-dark-card p-4 rounded-xl">
                     <h3 className="font-bold text-dark dark:text-light mb-2">Insight IA</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-text-secondary text-sm">
                         Ce mois-ci, vos dépenses en transport ont augmenté de 15% par rapport à Juin, principalement en raison de la hausse du prix de l'essence. Vous avez cependant bien maîtrisé votre budget alimentation.
                     </p>
                 </div>

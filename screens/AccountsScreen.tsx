@@ -22,10 +22,10 @@ const AddAccountForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-sm">
+            <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-sm">
                 <div className="flex justify-between items-center mb-6">
                     <h3 className="font-bold text-dark dark:text-light text-lg">Ajouter un Compte</h3>
-                    <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-light" /></button>
+                    <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-text-secondary hover:text-dark dark:hover:text-light" /></button>
                 </div>
                 <div className="space-y-4">
                     <div>
@@ -99,14 +99,14 @@ const AccountsScreen: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 {accountWithBalances.map(account => {
                     const Icon = accountIcons[account.type];
                     return (
-                        <div key={account.id} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm flex items-center justify-between">
+                        <div key={account.id} className="bg-white dark:bg-dark-card p-4 rounded-xl flex items-center justify-between">
                             <div className="flex items-center">
                                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
                                     <Icon className="w-6 h-6 text-primary" />
                                 </div>
                                 <div>
                                     <p className="font-bold text-dark dark:text-light">{account.name}</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">{account.type}</p>
+                                    <p className="text-sm text-gray-500 dark:text-text-secondary">{account.type}</p>
                                 </div>
                             </div>
                             <div className="text-right">

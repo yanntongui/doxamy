@@ -54,7 +54,7 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
 
         const sortedContributions = goal.contributions.slice().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         if (sortedContributions.length < 2) {
-            return <p className="text-center text-sm text-gray-500 dark:text-gray-400">Ajoutez d'autres contributions pour une estimation.</p>;
+            return <p className="text-center text-sm text-gray-500 dark:text-text-secondary">Ajoutez d'autres contributions pour une estimation.</p>;
         }
 
         const firstDate = new Date(sortedContributions[0].date);
@@ -64,14 +64,14 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
         const dailyRate = totalContributed / daysDiff;
 
         if (dailyRate <= 0) {
-            return <p className="text-center text-sm text-gray-500 dark:text-gray-400">Rythme d'épargne insuffisant pour une projection.</p>;
+            return <p className="text-center text-sm text-gray-500 dark:text-text-secondary">Rythme d'épargne insuffisant pour une projection.</p>;
         }
 
         const daysToGoal = Math.ceil(remaining / dailyRate);
         const completionDate = new Date();
         completionDate.setDate(completionDate.getDate() + daysToGoal);
 
-        return <p className="text-center text-sm text-gray-600 dark:text-gray-300">À ce rythme, vous l'atteindrez vers le <span className="font-bold text-primary">{completionDate.toLocaleDateString('fr-FR')}</span>.</p>;
+        return <p className="text-center text-sm text-gray-600 dark:text-text-secondary">À ce rythme, vous l'atteindrez vers le <span className="font-bold text-primary">{completionDate.toLocaleDateString('fr-FR')}</span>.</p>;
     };
 
     const CountdownInfo: React.FC = () => {
@@ -85,7 +85,7 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
         if (daysLeft < 0) {
             return <p className="text-center text-sm font-semibold text-danger">Date limite dépassée de {-daysLeft} jours.</p>;
         }
-        return <p className="text-center text-sm text-gray-600 dark:text-gray-300"><span className="font-bold text-primary">{daysLeft}</span> jours restants.</p>;
+        return <p className="text-center text-sm text-gray-600 dark:text-text-secondary"><span className="font-bold text-primary">{daysLeft}</span> jours restants.</p>;
     };
 
     const ContributionChart: React.FC = () => {
@@ -95,7 +95,7 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
 
         return (
             <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
-                <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">Historique des contributions</h4>
+                <h4 className="text-xs font-semibold text-gray-500 dark:text-text-secondary mb-2">Historique des contributions</h4>
                 <div className="flex items-end justify-center h-24 space-x-1">
                     {goal.contributions.slice(-30).map((c, index) => (
                         <div key={index} className="flex-1 bg-secondary rounded-t-sm hover:bg-secondary/80 transition-colors" style={{ height: `${(c.amount / maxContribution) * 100}%` }} title={`${c.amount.toLocaleString('fr-FR')} FCFA le ${new Date(c.date).toLocaleDateString()}`}></div>
@@ -130,11 +130,11 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
                     <CountdownInfo />
                 </div>
                 <div className="w-full max-w-sm grid grid-cols-2 gap-3 text-center mb-4">
-                    <div className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm"><p className="text-xs text-gray-500 dark:text-gray-400">Niveau</p><p className="font-bold text-primary">{userLevel}</p></div>
-                    <div className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center"><FireIcon className="w-5 h-5 text-orange-500 mr-1.5" /><p className="font-bold text-orange-500">{streak} jours</p></div>
+                    <div className="bg-white dark:bg-dark-card p-2 rounded-lg"><p className="text-xs text-gray-500 dark:text-text-secondary">Niveau</p><p className="font-bold text-primary">{userLevel}</p></div>
+                    <div className="bg-white dark:bg-dark-card p-2 rounded-lg flex items-center justify-center"><FireIcon className="w-5 h-5 text-orange-500 mr-1.5" /><p className="font-bold text-orange-500">{streak} jours</p></div>
                 </div>
                 <div className="w-full max-w-sm space-y-3 mb-6">
-                    <button onClick={() => setShowAddMoney(true)} className="w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md hover:bg-blue-700">Ajouter de l'argent</button>
+                    <button onClick={() => setShowAddMoney(true)} className="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-blue-700">Ajouter de l'argent</button>
                 </div>
                 <div className="w-full max-w-sm mt-4 text-left">
                     <ContributionChart />
@@ -143,7 +143,7 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
 
             {showAddMoney && (
                 <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-sm">
+                    <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-sm">
                         <div className="flex justify-between items-center mb-4">
                             <h3 className="font-bold text-dark dark:text-light text-lg">Contribuer à "{goal.name}"</h3>
                             <button onClick={() => setShowAddMoney(false)}><XIcon className="w-6 h-6 text-gray-500 dark:text-gray-300" /></button>
@@ -151,11 +151,11 @@ const GoalDetail: React.FC<{ goal: Goal; onBack: () => void; userLevel: string; 
                         <div className="space-y-4">
                             <div>
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Montant (FCFA)</label>
-                                <input type="number" value={amountToAdd} onChange={e => setAmountToAdd(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-center text-lg font-semibold text-dark dark:text-light" />
+                                <input type="number" value={amountToAdd} onChange={e => setAmountToAdd(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-center text-lg font-semibold text-dark dark:text-light" />
                             </div>
                             <div>
                                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Depuis le compte</label>
-                                <select value={selectedAccountId} onChange={e => setSelectedAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light">
+                                <select value={selectedAccountId} onChange={e => setSelectedAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light">
                                     {accounts.map(acc => <option key={acc.id} value={acc.id}>{acc.name} ({acc.type})</option>)}
                                 </select>
                             </div>
@@ -210,29 +210,29 @@ const AddGoalForm: React.FC<{ onBack: () => void; }> = ({ onBack }) => {
             <div className="space-y-4">
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Nom de l'objectif</label>
-                    <input type="text" placeholder="Ex: Voyage au Ghana" value={name} onChange={e => setName(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light" />
+                    <input type="text" placeholder="Ex: Voyage au Ghana" value={name} onChange={e => setName(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Montant Cible</label>
-                        <input type="number" placeholder="500000" value={targetAmount} onChange={e => setTargetAmount(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light" />
+                        <input type="number" placeholder="500000" value={targetAmount} onChange={e => setTargetAmount(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light" />
                     </div>
                     <div>
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Dépôt Initial</label>
-                        <input type="number" placeholder="0" value={initialAmount} onChange={e => setInitialAmount(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light" />
+                        <input type="number" placeholder="0" value={initialAmount} onChange={e => setInitialAmount(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light" />
                     </div>
                 </div>
                 {parseFloat(initialAmount) > 0 && (
                     <div>
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Depuis le compte</label>
-                        <select value={initialAccountId} onChange={e => setInitialAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light">
+                        <select value={initialAccountId} onChange={e => setInitialAccountId(e.target.value)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light">
                             {accounts.map(acc => <option key={acc.id} value={acc.id}>{acc.name}</option>)}
                         </select>
                     </div>
                 )}
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Catégorie</label>
-                    <select value={category} onChange={e => setCategory(e.target.value as any)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light">
+                    <select value={category} onChange={e => setCategory(e.target.value as any)} className="mt-1 block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light">
                         <option>Projet Personnel</option>
                         <option>Épargne Simple</option>
                         <option>Investissement</option>
@@ -241,17 +241,17 @@ const AddGoalForm: React.FC<{ onBack: () => void; }> = ({ onBack }) => {
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Date limite (Optionnel)</label>
                     <div className="relative mt-1">
-                        <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} className="block w-full px-3 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-dark dark:text-light pr-10" />
+                        <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} className="block w-full px-3 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light pr-10" />
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                            <CalendarIcon className="h-5 w-5 text-gray-400" />
+                            <CalendarIcon className="h-5 w-5 text-text-muted" />
                         </div>
                     </div>
                 </div>
                 <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Icône</label>
-                    <div className="mt-2 flex space-x-3">{iconOptions.map(iconName => { const IconComponent = iconMap[iconName]; return (<button key={iconName} onClick={() => setSelectedIconName(iconName)} className={`w-16 h-16 rounded-lg flex items-center justify-center border-2 transition-colors ${selectedIconName === iconName ? 'bg-secondary/20 border-secondary' : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600'}`}><IconComponent className={`w-8 h-8 ${selectedIconName === iconName ? 'text-secondary' : 'text-gray-500 dark:text-gray-400'}`} /></button>); })}</div>
+                    <div className="mt-2 flex space-x-3">{iconOptions.map(iconName => { const IconComponent = iconMap[iconName]; return (<button key={iconName} onClick={() => setSelectedIconName(iconName)} className={`w-16 h-16 rounded-lg flex items-center justify-center border-2 transition-colors ${selectedIconName === iconName ? 'bg-secondary/20 border-secondary' : 'bg-white dark:bg-dark-card border-gray-300 dark:border-gray-600'}`}><IconComponent className={`w-8 h-8 ${selectedIconName === iconName ? 'text-secondary' : 'text-gray-500 dark:text-text-secondary'}`} /></button>); })}</div>
                 </div>
-                <button onClick={handleSubmit} className="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors mt-6">
+                <button onClick={handleSubmit} className="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors mt-6">
                     Enregistrer l'objectif
                 </button>
             </div>
@@ -296,11 +296,11 @@ const GoalsScreen: React.FC = () => {
                 </button>
             </div>
             <div className="space-y-4">
-                {goals.length === 0 && <p className="text-center text-gray-500 dark:text-gray-400 py-8">Aucun objectif pour le moment.</p>}
+                {goals.length === 0 && <p className="text-center text-gray-500 dark:text-text-secondary py-8">Aucun objectif pour le moment.</p>}
                 {goals.map(goal => {
                     const percentage = goal.targetAmount > 0 ? (goal.currentAmount / goal.targetAmount) * 100 : 0;
                     return (
-                        <div key={goal.id} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm cursor-pointer hover:shadow-md transition-shadow" onClick={() => setSelectedGoal(goal)}>
+                        <div key={goal.id} className="bg-white dark:bg-dark-card p-4 rounded-xl cursor-pointer hover:shadow-md transition-shadow" onClick={() => setSelectedGoal(goal)}>
                             <div className="flex items-center">
                                 <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mr-4">
                                     <goal.icon className="w-6 h-6 text-secondary" />
@@ -308,12 +308,12 @@ const GoalsScreen: React.FC = () => {
                                 <div className="flex-grow">
                                     <div className="flex justify-between items-baseline mb-1">
                                         <span className="font-bold text-dark dark:text-light">{goal.name}</span>
-                                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{Math.round(percentage)}%</span>
+                                        <span className="text-xs text-gray-500 dark:text-text-secondary font-medium">{Math.round(percentage)}%</span>
                                     </div>
                                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                         <div className="bg-secondary h-2 rounded-full" style={{ width: `${percentage}%` }}></div>
                                     </div>
-                                    <div className="text-right text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                    <div className="text-right text-xs text-gray-500 dark:text-text-secondary mt-1">
                                         {goal.currentAmount.toLocaleString('fr-FR')} / {goal.targetAmount.toLocaleString('fr-FR')} FCFA
                                     </div>
                                 </div>

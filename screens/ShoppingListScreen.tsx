@@ -171,7 +171,7 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
     };
 
     return (
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 p-3 rounded-lg space-y-3 mt-4">
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-dark-card p-3 rounded-lg space-y-3 mt-4">
         <p className="font-bold text-dark dark:text-light text-center">Ajouter un article</p>
         <div className="grid grid-cols-2 gap-2">
           <input type="text" placeholder="Nom de l'article" value={newItemName} onChange={e => setNewItemName(e.target.value)} className="col-span-2 w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-black dark:text-white placeholder-gray-500" />
@@ -188,27 +188,27 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
     return (
       <div>
         <button onClick={() => setActiveListId(null)} className="text-primary font-bold mb-4">&lt; Retour à toutes les listes</button>
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm mb-4 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">Budget Total Estimé</p>
+        <div className="bg-white dark:bg-dark-card p-4 rounded-xl mb-4 text-center">
+          <p className="text-sm text-gray-500 dark:text-text-secondary">Budget Total Estimé</p>
           <p className="text-3xl font-bold text-primary">{totalEstimated.toLocaleString('fr-FR')} FCFA</p>
         </div>
-        <input type="text" placeholder="Nom de la liste" value={activeList.name} onChange={e => updateActiveList({ name: e.target.value })} className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg mb-4 text-dark dark:text-light" />
+        <input type="text" placeholder="Nom de la liste" value={activeList.name} onChange={e => updateActiveList({ name: e.target.value })} className="w-full px-4 py-3 bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 rounded-lg mb-4 text-dark dark:text-light" />
         <div className="space-y-2 mb-6">
           {activeList.items.map(item => (
-            <div key={item.id} className="bg-white dark:bg-gray-800 p-3 rounded-lg flex justify-between items-center">
+            <div key={item.id} className="bg-white dark:bg-dark-card p-3 rounded-lg flex justify-between items-center">
               <div>
                 <span className="font-medium text-dark dark:text-light">{item.name}</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400"> (x{item.quantity})</span>
+                <span className="text-sm text-gray-500 dark:text-text-secondary"> (x{item.quantity})</span>
               </div>
               <div className="flex items-center space-x-3">
-                <span className="text-gray-600 dark:text-gray-300">~{(item.estimatedPrice * item.quantity).toLocaleString('fr-FR')} FCFA</span>
+                <span className="text-gray-600 dark:text-text-secondary">~{(item.estimatedPrice * item.quantity).toLocaleString('fr-FR')} FCFA</span>
                 <button onClick={() => handleRemoveItem(item.id)} className="text-danger hover:text-red-700">
                   <TrashIcon className="w-5 h-5" />
                 </button>
               </div>
             </div>
           ))}
-          {activeList.items.length === 0 && <p className="text-center text-gray-500 dark:text-gray-400 py-4">Ajoutez des articles à votre liste.</p>}
+          {activeList.items.length === 0 && <p className="text-center text-gray-500 dark:text-text-secondary py-4">Ajoutez des articles à votre liste.</p>}
         </div>
         <ItemEntryForm />
         <button onClick={() => setMode('shop')} disabled={activeList.items.length === 0} className="mt-6 w-full bg-secondary text-white font-bold py-3 rounded-lg disabled:bg-gray-400">Passer en Mode Shopping</button>
@@ -220,19 +220,19 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
     if (!activeList) return null;
     return (
       <div>
-        <div className="sticky top-0 bg-light/80 dark:bg-gray-900/80 backdrop-blur-sm py-4 mb-4 z-10 -mx-4 px-4">
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400">Budget Restant (Estimé)</p>
+        <div className="sticky top-0 bg-light dark:bg-dark-bg py-4 mb-4 z-10 -mx-4 px-4">
+          <div className="bg-white dark:bg-dark-card p-4 rounded-xl text-center">
+            <p className="text-sm text-gray-500 dark:text-text-secondary">Budget Restant (Estimé)</p>
             <p className={`text-3xl font-bold ${budgetRemaining >= 0 ? 'text-primary' : 'text-danger'}`}>{budgetRemaining.toLocaleString('fr-FR')} FCFA</p>
           </div>
         </div>
         <div className="space-y-3">
           {activeList.items.map(item => (
-            <div key={item.id} className={`bg-white dark:bg-gray-800 p-3 rounded-lg flex items-center space-x-3 transition-opacity ${item.purchased ? 'opacity-60' : ''}`}>
+            <div key={item.id} className={`bg-white dark:bg-dark-card p-3 rounded-lg flex items-center space-x-3 transition-opacity ${item.purchased ? 'opacity-60' : ''}`}>
               <input type="checkbox" className="h-6 w-6 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600" checked={item.purchased} onChange={e => handleItemUpdate(item.id, { purchased: e.target.checked })} />
               <div className="flex-grow">
                 <p className={`font-medium text-dark dark:text-light ${item.purchased ? 'line-through' : ''}`}>{item.name} (x{item.quantity})</p>
-                <p className="text-xs text-gray-400 dark:text-gray-500">Prévu: {item.estimatedPrice.toLocaleString('fr-FR')} FCFA</p>
+                <p className="text-xs text-text-muted dark:text-gray-500">Prévu: {item.estimatedPrice.toLocaleString('fr-FR')} FCFA</p>
               </div>
               <input type="number" placeholder="Prix réel" defaultValue={item.actualPrice} onChange={e => handleItemUpdate(item.id, { actualPrice: parseFloat(e.target.value) || 0 })} className="w-28 p-1 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-right text-dark dark:text-light placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary" />
             </div>
@@ -253,11 +253,11 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
         {activeList.status === 'archived' && (
           <button onClick={() => setActiveListId(null)} className="text-primary font-bold mb-4">&lt; Retour à toutes les listes</button>
         )}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm grid grid-cols-3 text-center divide-x dark:divide-gray-700">
-          <div><p className="text-xs text-gray-500 dark:text-gray-400">Prévu</p><p className="font-bold text-lg dark:text-light">{planned.toLocaleString('fr-FR')}</p></div>
-          <div><p className="text-xs text-gray-500 dark:text-gray-400">Dépensé</p><p className="font-bold text-lg dark:text-light">{spent.toLocaleString('fr-FR')}</p></div>
+        <div className="bg-white dark:bg-dark-card p-4 rounded-xl grid grid-cols-3 text-center divide-x dark:divide-gray-700">
+          <div><p className="text-xs text-gray-500 dark:text-text-secondary">Prévu</p><p className="font-bold text-lg dark:text-light">{planned.toLocaleString('fr-FR')}</p></div>
+          <div><p className="text-xs text-gray-500 dark:text-text-secondary">Dépensé</p><p className="font-bold text-lg dark:text-light">{spent.toLocaleString('fr-FR')}</p></div>
           <div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Écart</p>
+            <p className="text-xs text-gray-500 dark:text-text-secondary">Écart</p>
             <div className={`font-bold text-lg flex items-center justify-center ${difference <= 0 ? 'text-success' : 'text-danger'}`}>
               {difference > 0 ? <TrendUpIcon className="w-4 h-4" /> : <TrendDownIcon className="w-4 h-4" />}
               <span>{Math.abs(difference).toLocaleString('fr-FR')}</span>
@@ -265,9 +265,9 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
           </div>
         </div>
         <div className="bg-accent/20 text-accent-800 dark:text-yellow-200 dark:bg-yellow-500/20 p-3 rounded-lg text-sm font-medium text-center">{insight}</div>
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
+        <div className="bg-white dark:bg-dark-card p-4 rounded-xl">
           <h3 className="font-bold mb-3 text-dark dark:text-light">Détails des Achats</h3>
-          <div className="space-y-2 text-sm">{activeList.items.filter(i => i.purchased || activeList.status === 'archived').map(item => (<div key={item.id} className="grid grid-cols-3 items-center gap-2"><span className="font-medium text-dark dark:text-light">{item.name}</span><span className="text-gray-500 dark:text-gray-400 text-right">{item.estimatedPrice.toLocaleString('fr-FR')}</span><span className={`font-semibold text-right ${((item.actualPrice ?? item.estimatedPrice) - item.estimatedPrice) > 0 ? 'text-danger' : 'text-success'}`}>{item.actualPrice?.toLocaleString('fr-FR')}</span></div>))}</div>
+          <div className="space-y-2 text-sm">{activeList.items.filter(i => i.purchased || activeList.status === 'archived').map(item => (<div key={item.id} className="grid grid-cols-3 items-center gap-2"><span className="font-medium text-dark dark:text-light">{item.name}</span><span className="text-gray-500 dark:text-text-secondary text-right">{item.estimatedPrice.toLocaleString('fr-FR')}</span><span className={`font-semibold text-right ${((item.actualPrice ?? item.estimatedPrice) - item.estimatedPrice) > 0 ? 'text-danger' : 'text-success'}`}>{item.actualPrice?.toLocaleString('fr-FR')}</span></div>))}</div>
         </div>
         {activeList.status === 'active' && (
           <div className="mt-6 space-y-3">
@@ -281,14 +281,14 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
             />
             <button
               onClick={handleReceiptClick}
-              className={`w-full flex items-center justify-center space-x-2 py-3 rounded-lg transition-colors border-2 ${receiptFile || activeList.receiptFileName ? 'bg-secondary/20 text-secondary border-secondary' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700'
+              className={`w-full flex items-center justify-center space-x-2 py-3 rounded-lg transition-colors border-2 ${receiptFile || activeList.receiptFileName ? 'bg-secondary/20 text-secondary border-secondary' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-dark-border'
                 }`}
             >
               <CameraIcon className="w-5 h-5" />
               <span>{receiptFile || activeList.receiptFileName ? 'Reçu ajouté' : 'Ajouter un reçu'}</span>
             </button>
             {(receiptFile || activeList.receiptFileName) && (
-              <p className="text-center text-sm text-gray-600 dark:text-gray-400 -mt-2">
+              <p className="text-center text-sm text-gray-600 dark:text-text-muted -mt-2">
                 Fichier: {receiptFile?.name || activeList.receiptFileName}
               </p>
             )}
@@ -307,22 +307,22 @@ const ShoppingListScreen: React.FC<ShoppingListScreenProps> = ({ onBack }) => {
 
   const renderHistory = () => (
     <div>
-      <button onClick={handleStartNewList} className="w-full bg-primary text-white font-bold py-3 rounded-lg mb-6 shadow-md hover:bg-blue-700">
+      <button onClick={handleStartNewList} className="w-full bg-primary text-white font-bold py-3 rounded-lg mb-6 hover:bg-blue-700">
         Commencer une Nouvelle Liste
       </button>
       <h2 className="font-bold text-dark dark:text-light text-lg mb-3">Mes Listes</h2>
       <div className="space-y-3">
-        {lists.length === 0 && <p className="text-center text-gray-500 dark:text-gray-400 py-4">Aucune liste pour le moment.</p>}
+        {lists.length === 0 && <p className="text-center text-gray-500 dark:text-text-secondary py-4">Aucune liste pour le moment.</p>}
         {lists.map(list => (
-          <div key={list.id} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm flex justify-between items-center">
+          <div key={list.id} className="bg-white dark:bg-dark-card p-4 rounded-xl flex justify-between items-center">
             <div onClick={() => handleViewListDetails(list)} className="flex-grow cursor-pointer flex items-center">
               <div>
                 <p className="font-bold text-dark dark:text-light">{list.name}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{list.date}</p>
+                <p className="text-sm text-gray-500 dark:text-text-secondary">{list.date}</p>
                 {list.status === 'archived' && <span className="text-xs font-medium text-success bg-success/10 px-2 py-0.5 rounded-full mt-1 inline-block">Archivée</span>}
                 {list.status === 'active' && <span className="text-xs font-medium text-blue-600 bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 px-2 py-0.5 rounded-full mt-1 inline-block">En cours</span>}
               </div>
-              {list.receiptFileName && <CameraIcon className="w-4 h-4 text-gray-400 ml-3" title={`Reçu: ${list.receiptFileName}`} />}
+              {list.receiptFileName && <CameraIcon className="w-4 h-4 text-text-muted ml-3" title={`Reçu: ${list.receiptFileName}`} />}
             </div>
             <button onClick={() => handleDeleteList(list.id)} className="text-danger p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full">
               <TrashIcon className="w-5 h-5" />

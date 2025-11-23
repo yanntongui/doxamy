@@ -18,7 +18,7 @@ const GettingStartedChecklist: React.FC<GettingStartedChecklistProps> = ({ onNav
     ];
     
     return (
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm mb-6">
+        <div className="bg-white dark:bg-dark-card p-4 rounded-xl mb-6">
             <h3 className="font-bold text-dark dark:text-light mb-3">Pour bien commencer</h3>
             <div className="space-y-2">
                 {items.map(item => (
@@ -35,7 +35,7 @@ const GettingStartedChecklist: React.FC<GettingStartedChecklistProps> = ({ onNav
                                 <div className="w-6 h-6 border-2 border-gray-300 dark:border-gray-500 rounded-full group-hover:border-primary transition-colors"></div>
                             )}
                         </div>
-                        <span className={`flex-grow font-medium ${item.done ? 'text-gray-400 dark:text-gray-500 line-through' : 'text-dark dark:text-light group-hover:text-primary'}`}>
+                        <span className={`flex-grow font-medium ${item.done ? 'text-text-muted dark:text-gray-500 line-through' : 'text-dark dark:text-light group-hover:text-primary'}`}>
                             {item.text}
                         </span>
                     </button>

@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>doxamy - Votre Avenir Financier en Main</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class', // Enable dark mode
-        theme: {
-          extend: {
-            colors: {
-              primary: '#0052CC', // A strong, trustworthy blue
-              secondary: '#00A383', // A vibrant, growth-oriented green
-              accent: '#FFC400', // A bright, motivating gold/yellow
-              light: '#F5F8FA',
-              dark: '#172B4D',
-              danger: '#DE350B',
-              success: '#36B37E',
-              warning: '#FFAB00',
-            },
-          },
-        },
-      }
-    </script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Doxamy - Gérez vos finances personnelles avec intelligence et simplicité" />
+  <meta name="theme-color" content="#6366F1" />
+  <title>doxamy - Votre Avenir Financier en Main</title>
+
+  <!-- Preconnect to Google Fonts for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <script type="importmap">
 {
   "imports": {
@@ -34,10 +22,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-gray-200 dark:bg-gray-900">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+
+<body class="bg-gray-200 dark:bg-gray-900">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
 </html>

@@ -65,16 +65,16 @@ const BudgetWizard: React.FC<BudgetWizardProps> = ({ onGenerate, onCancel }) => 
 
     return (
         <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-md">
+            <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-md">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-bold text-dark dark:text-light">Assistant Budgétaire</h2>
-                    <button onClick={onCancel} className="text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-light"><XIcon className="w-6 h-6" /></button>
+                    <button onClick={onCancel} className="text-gray-500 dark:text-text-secondary hover:text-dark dark:hover:text-light"><XIcon className="w-6 h-6" /></button>
                 </div>
 
                 {step === 1 && (
                     <div>
                         <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Quel est votre revenu mensuel total ?</label>
-                        <input type="number" value={income} onChange={e => setIncome(e.target.value)} placeholder="Ex: 500000" className="mt-2 block w-full px-3 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-center text-lg font-semibold focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light" />
+                        <input type="number" value={income} onChange={e => setIncome(e.target.value)} placeholder="Ex: 500000" className="mt-2 block w-full px-3 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-center text-lg font-semibold focus:outline-none focus:ring-primary focus:border-primary text-dark dark:text-light" />
                         <button onClick={() => setStep(2)} disabled={!income || parseFloat(income) <= 0} className="mt-6 w-full bg-primary text-white font-bold py-3 rounded-lg disabled:bg-gray-400">Suivant</button>
                     </div>
                 )}
@@ -84,9 +84,9 @@ const BudgetWizard: React.FC<BudgetWizardProps> = ({ onGenerate, onCancel }) => 
                         <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Choisissez une méthode de répartition :</p>
                         <div className="space-y-3">
                             {['50/30/20', '50/25/25', 'zero'].map(m => (
-                                <button key={m} onClick={() => setMethod(m as any)} className={`w-full text-left p-3 rounded-lg border-2 transition-colors ${method === m ? 'bg-primary/10 border-primary' : 'border-gray-200 dark:border-gray-700 hover:border-primary/50'}`}>
+                                <button key={m} onClick={() => setMethod(m as any)} className={`w-full text-left p-3 rounded-lg border-2 transition-colors ${method === m ? 'bg-primary/10 border-primary' : 'border-gray-200 dark:border-dark-border hover:border-primary/50'}`}>
                                     <p className="font-bold dark:text-light">{m === '50/30/20' ? '50/30/20 (Équilibré)' : m === '50/25/25' ? '50/25/25 (Focus Épargne)' : 'Base Zéro (Manuel)'}</p>
-                                    <p className="text-xs text-gray-600 dark:text-gray-400">{m === '50/30/20' ? '50% Essentiel, 30% Personnel, 20% Épargne' : m === '50/25/25' ? '50% Essentiel, 25% Personnel, 25% Épargne' : 'Attribuez chaque franc de votre revenu.'}</p>
+                                    <p className="text-xs text-gray-600 dark:text-text-muted">{m === '50/30/20' ? '50% Essentiel, 30% Personnel, 20% Épargne' : m === '50/25/25' ? '50% Essentiel, 25% Personnel, 25% Épargne' : 'Attribuez chaque franc de votre revenu.'}</p>
                                 </button>
                             ))}
                         </div>
@@ -231,20 +231,20 @@ const BudgetScreen: React.FC<BudgetScreenProps> = () => {
 
                 {savedBudgets.length > 0 ? (
                     <div className="space-y-3">
-                        <button onClick={() => setShowWizard(true)} className="w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md hover:bg-blue-700 mb-4">
+                        <button onClick={() => setShowWizard(true)} className="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-blue-700 mb-4">
                             Créer un nouveau budget
                         </button>
                         {savedBudgets.map(budget => (
-                            <div key={budget.id} onClick={() => setActiveBudget(budget)} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm cursor-pointer hover:shadow-md dark:hover:bg-gray-700">
+                            <div key={budget.id} onClick={() => setActiveBudget(budget)} className="bg-white dark:bg-dark-card p-4 rounded-xl cursor-pointer hover:shadow-md dark:hover:bg-gray-700">
                                 <p className="font-bold text-dark dark:text-light">{budget.date}</p>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Revenu: {budget.income.toLocaleString('fr-FR')} FCFA</p>
+                                <p className="text-sm text-gray-500 dark:text-text-secondary">Revenu: {budget.income.toLocaleString('fr-FR')} FCFA</p>
                             </div>
                         ))}
                     </div>
                 ) : (
                     <div className="flex-grow flex flex-col items-center justify-center text-center p-4">
-                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">Vous n'avez pas encore de budget.</p>
-                        <button onClick={() => setShowWizard(true)} className="bg-primary text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-blue-700">Créer mon premier budget</button>
+                        <p className="text-lg text-gray-600 dark:text-text-muted mb-4">Vous n'avez pas encore de budget.</p>
+                        <button onClick={() => setShowWizard(true)} className="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700">Créer mon premier budget</button>
                     </div>
                 )}
 
@@ -266,17 +266,17 @@ const BudgetScreen: React.FC<BudgetScreenProps> = () => {
                 </button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm mb-6">
-                <div><p className="text-xs text-gray-500 dark:text-gray-400">Revenu</p><p className="font-bold text-lg text-success">{budgetWithLiveSpent.income.toLocaleString('fr-FR')}</p></div>
-                <div><p className="text-xs text-gray-500 dark:text-gray-400">Alloué</p><p className="font-bold text-lg text-primary">{totalAllocated.toLocaleString('fr-FR')}</p></div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-center bg-white dark:bg-dark-card p-3 rounded-xl mb-6">
+                <div><p className="text-xs text-gray-500 dark:text-text-secondary">Revenu</p><p className="font-bold text-lg text-success">{budgetWithLiveSpent.income.toLocaleString('fr-FR')}</p></div>
+                <div><p className="text-xs text-gray-500 dark:text-text-secondary">Alloué</p><p className="font-bold text-lg text-primary">{totalAllocated.toLocaleString('fr-FR')}</p></div>
                 <div className={`col-span-2 md:col-span-1 p-2 rounded-lg ${unallocated === 0 ? 'bg-green-100 dark:bg-green-900/50' : unallocated > 0 ? 'bg-yellow-100 dark:bg-yellow-900/50' : 'bg-red-100 dark:bg-red-900/50'}`}>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Reste à allouer</p>
+                    <p className="text-xs text-gray-600 dark:text-text-secondary">Reste à allouer</p>
                     <p className={`font-bold text-lg ${unallocated === 0 ? 'text-green-700 dark:text-green-300' : unallocated > 0 ? 'text-yellow-800 dark:text-yellow-300' : 'text-red-800 dark:text-red-300'}`}>{unallocated.toLocaleString('fr-FR')}</p>
                 </div>
             </div>
 
-            <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <div className="overflow-x-auto bg-white dark:bg-dark-card rounded-xl">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-text-secondary">
                     <thead className="text-xs text-gray-700 dark:text-gray-300 uppercase bg-gray-50 dark:bg-gray-700">
                         <tr>
                             <th scope="col" className="px-4 py-3 min-w-[200px]">Catégorie</th>
@@ -294,7 +294,7 @@ const BudgetScreen: React.FC<BudgetScreenProps> = () => {
                                     <td colSpan={6} className="px-4 py-2 font-bold text-dark dark:text-light">{section.title}</td>
                                 </tr>
                                 {section.lines.map((line) => (
-                                    <tr key={line.id} className="border-b dark:border-gray-700">
+                                    <tr key={line.id} className="border-b dark:border-dark-border">
                                         <td className="px-4 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                             <input
                                                 type="text"
@@ -342,7 +342,7 @@ const BudgetScreen: React.FC<BudgetScreenProps> = () => {
             </div>
 
             <div className="mt-6 flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4">
-                <button onClick={handleSaveAndClose} className="w-full md:w-auto flex-1 bg-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                <button onClick={handleSaveAndClose} className="w-full md:w-auto flex-1 bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
                     Enregistrer & Fermer
                 </button>
             </div>

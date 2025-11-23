@@ -38,10 +38,10 @@ const DebtScreen: React.FC<DebtScreenProps> = ({ onBack }) => {
 
         return (
             <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-sm">
+                <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-sm">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="font-bold text-dark dark:text-light text-lg">Ajouter un élément</h3>
-                        <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /></button>
+                        <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-text-secondary" /></button>
                     </div>
                     <div className="space-y-4">
                         <div>
@@ -92,19 +92,19 @@ const DebtScreen: React.FC<DebtScreenProps> = ({ onBack }) => {
 
         return (
             <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center p-4">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-sm">
+                <div className="bg-white dark:bg-dark-card rounded-xl p-6 w-full max-w-sm">
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="font-bold text-dark dark:text-light text-lg">Détails</h3>
-                        <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" /></button>
+                        <button onClick={onClose}><XIcon className="w-6 h-6 text-gray-500 dark:text-text-secondary" /></button>
                     </div>
                     <h2 className="text-xl font-bold text-dark dark:text-light text-center">{item.name}</h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-4">{item.type === 'debt' ? 'Dette' : 'Créance'}</p>
+                    <p className="text-sm text-gray-500 dark:text-text-secondary text-center mb-4">{item.type === 'debt' ? 'Dette' : 'Créance'}</p>
 
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 mb-2">
                         <div className={`${color} h-4 rounded-full`} style={{ width: `${percentage}%` }}></div>
                     </div>
                     <p className="text-center font-semibold text-dark dark:text-light">{item.amountPaid.toLocaleString('fr-FR')} / {item.totalAmount.toLocaleString('fr-FR')} FCFA</p>
-                    <p className="text-center text-sm text-gray-500 dark:text-gray-400">({percentage.toFixed(1)}%)</p>
+                    <p className="text-center text-sm text-gray-500 dark:text-text-secondary">({percentage.toFixed(1)}%)</p>
 
                     <div className="mt-6">
                         {!showRepayment ? (
@@ -151,17 +151,17 @@ const DebtScreen: React.FC<DebtScreenProps> = ({ onBack }) => {
             </div>
 
             <div className="grid grid-cols-2 gap-2 rounded-lg bg-gray-200 dark:bg-gray-800 p-1 mb-4">
-                <button onClick={() => setActiveTab('debts')} className={`py-2 rounded-md font-semibold transition-all ${activeTab === 'debts' ? 'bg-white dark:bg-gray-700 text-danger shadow' : 'text-gray-600 dark:text-gray-400'}`}>Mes Dettes</button>
-                <button onClick={() => setActiveTab('credits')} className={`py-2 rounded-md font-semibold transition-all ${activeTab === 'credits' ? 'bg-white dark:bg-gray-700 text-success shadow' : 'text-gray-600 dark:text-gray-400'}`}>Mes Créances</button>
+                <button onClick={() => setActiveTab('debts')} className={`py-2 rounded-md font-semibold transition-all ${activeTab === 'debts' ? 'bg-white dark:bg-gray-700 text-danger shadow' : 'text-gray-600 dark:text-text-muted'}`}>Mes Dettes</button>
+                <button onClick={() => setActiveTab('credits')} className={`py-2 rounded-md font-semibold transition-all ${activeTab === 'credits' ? 'bg-white dark:bg-gray-700 text-success shadow' : 'text-gray-600 dark:text-text-muted'}`}>Mes Créances</button>
             </div>
 
             <div className="space-y-3">
-                {filteredItems.length === 0 && <p className="text-center text-gray-500 dark:text-gray-400 py-8">Aucun élément dans cette catégorie.</p>}
+                {filteredItems.length === 0 && <p className="text-center text-gray-500 dark:text-text-secondary py-8">Aucun élément dans cette catégorie.</p>}
                 {filteredItems.map(item => {
                     const percentage = item.totalAmount > 0 ? (item.amountPaid / item.totalAmount) * 100 : 0;
                     const color = item.type === 'debt' ? 'bg-danger' : 'bg-success';
                     return (
-                        <div key={item.id} onClick={() => setSelectedItem(item)} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm cursor-pointer hover:shadow-md dark:hover:bg-gray-700">
+                        <div key={item.id} onClick={() => setSelectedItem(item)} className="bg-white dark:bg-dark-card p-4 rounded-xl cursor-pointer hover:shadow-md dark:hover:bg-gray-700">
                             <div className="flex justify-between items-center mb-1">
                                 <p className="font-bold text-dark dark:text-light">{item.name}</p>
                                 <p className="font-semibold text-sm text-dark dark:text-light">{item.amountPaid.toLocaleString('fr-FR')} / {item.totalAmount.toLocaleString('fr-FR')}</p>
