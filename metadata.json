@@ -1,0 +1,8 @@
+{
+  "name": "doxamy",
+  "description": "A mobile finance management application concept with a focus on simplicity, smart predictions, and gamification, tailored for the Beninese market.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
